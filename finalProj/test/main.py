@@ -6,5 +6,5 @@ def main():
     sll = SLL()
     for i in range(10):
         sll.append(i)
-    print(sll[8])
+    
 main()
