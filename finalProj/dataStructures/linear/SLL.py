@@ -85,7 +85,7 @@ class SLL:
         else:
             current = self.head
             while current is not None:
-                if current.data == node:
+                if current == node:
                     return node
                 current = current.next
             return None
@@ -93,6 +93,8 @@ class SLL:
         if self.head is None:
             print("List is empty")
         else:
+            if(self.tail == self.head):
+                self.tail = None
             self.head = self.head.next
             self.size -= 1
     def deleteTail(self):
@@ -106,44 +108,51 @@ class SLL:
                 current = current.next
             if previous is None:
                 self.head = None
+                self.tail = None
             else:
                 previous.next = None
+                self.tail = previous
             self.size -= 1
-    def delete(self, data):
+    def delete(self, node):
         if self.head is None:
             print("List is empty")
         else:
             current = self.head
             previous = None
             while current is not None:
-                if current.data == data:
+                if current == node:
                     if previous is None:
                         self.head = current.next
+                        self.tail = current.next
                     else:
                         previous.next = current.next
                     self.size -= 1
                     return
+                previous = current
+                current = current.next
     def sort(self):
         if self.head is None:
             print("List is empty")
         else:
-            current = self.head
-            while current is not None:
-                if current.next is not None:
-                    if current.data > current.next.data:
+            for i in range(self.size):
+                current = self.head
+                for j in range(self.size - i - 1):
+                    if(current.data > current.next.data):
                         temp = current.data
                         current.data = current.next.data
                         current.next.data = temp
-                current = current.next
+                    current = current.next
     def clear(self):
         self.head = None
         self.tail = None
         self.size = 0
     def print(self):
-        print("SLL length: ", self.size)
+        print("SLL length:", self.size)
         sortedStatus = "Sorted" if self.isSorted() else "Unsorted"
-        print("SLL Sorted: ", sortedStatus)
-        print("SLL Content: ", end="")
+        print("SLL Sorted:", sortedStatus)
+        print("SLL Content:", end="")
         for i in range(self.size):
-            print(self[i], end=" ")
+            temp = self.head
+            print(temp.data, end=" ")
+            temp = temp.next
         print()
