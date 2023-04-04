@@ -22,7 +22,6 @@ def test_DLL_len():
     dll1 = DLL(myNode)
     assert len(dll1) == 1
 
-
 def test_DLL_insertHead():
     # Test 1: Insert at head
     dll = DLL()
@@ -53,6 +52,7 @@ def test_DLL_insertTail():
     assert dll.tail.data == 1
     assert dll.size == 1
     assert dll.head.previous == None
+ 
     # Test 2: Insert at tail
     node2 = DNode(2)
     node3 = DNode(3)

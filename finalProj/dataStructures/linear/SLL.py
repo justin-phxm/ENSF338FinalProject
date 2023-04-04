@@ -15,6 +15,7 @@ class SLL:
             node.next = self.head
             self.head = node
         self.size += 1
+        
     def insertTail(self, node):
         if self.head is None:
             self.head = node
@@ -23,6 +24,8 @@ class SLL:
             self.tail.next = node
             self.tail = node
         self.size += 1
+
+    # insert(node, index)
     def insert(self, node, index):
         if (index < 0 or index > self.size):
             print("Index out of range"  )
