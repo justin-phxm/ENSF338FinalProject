@@ -122,10 +122,12 @@ class SLL:
             while current is not None:
                 if current == node:
                     if previous is None:
-                        self.head = current.next
-                        self.tail = current.next
+                        self.head = node.next
+
                     else:
                         previous.next = current.next
+                    if(current.next is None):
+                        self.tail = previous
                     self.size -= 1
                     return
                 previous = current

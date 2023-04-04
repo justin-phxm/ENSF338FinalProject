@@ -228,7 +228,7 @@ def test_SLL_delete():
     assert sll.tail == None
     assert sll.size == 0
 
-    # Test 3: Multiple element list
+    # Test 3: Delete middle element
     node2 = Node(2)
     node3 = Node(3)
     node4 = Node(4)
@@ -243,16 +243,22 @@ def test_SLL_delete():
     assert sll.head.next.data == 2
     assert sll.head.next.next.data == 4
 
-    # Test 4: Not found
+    # Test 4: Delete head
+    sll.delete(node1)
+    assert sll.head.data == 2
+    assert sll.tail.data == 4
+    assert sll.size == 2
+    assert sll.head.next.data == 4
+    assert sll.tail.data == 4
+
+    # Test 5: Not found
     node5 = Node(5)
     sll.delete(node5)
-    assert sll.head.data == 1
+    assert sll.head.data == 2
     assert sll.tail.data == 4
-    assert sll.size == 3
-    assert sll.head.next.data == 2
-    assert sll.head.next.next.data == 4
+    assert sll.size == 2
+
 def test_SLL_sort():
-    
     # Test 1: Empty list
     sll = SLL()
     sll.sort()
