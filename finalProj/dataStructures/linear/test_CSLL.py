@@ -203,182 +203,189 @@ def test_csll_sortedInsert():
     assert csll.head.next.next.next.data == 4
     assert csll.tail.next == csll.head
 
-# def test_csll_search():
-#     # Test 1: Empty list
-#     csll = csll()
-#     node1 = Node(1)
-#     assert csll.search(node1) == None
+def test_csll_search():
+    # Test 1: Empty list
+    csll = CSLL()
+    node1 = Node(1)
+    assert csll.search(node1) == None
 
-#     # Test 2: Single element list
-#     # csll.insertTail(node1)
-#     assert csll.search(node1) == node1
+    # Test 2: Single element list
+    csll.insertTail(node1)
+    assert csll.search(node1) == node1
 
-#     # Test 3: Multiple element list
-#     node2 = Node(2)
-#     # csll.insertTail(node2)
-#     assert csll.search(node1) == node1
-#     assert csll.search(node2) == node2
+    # Test 3: Multiple element list
+    node2 = Node(2)
+    csll.insertTail(node2)
+    assert csll.search(node1) == node1
+    assert csll.search(node2) == node2
 
-#     # Test 4: Not found
-#     node3 = Node(3)
-#     assert csll.search(node3) == None
+    # Test 4: Not found
+    node3 = Node(3)
+    assert csll.search(node3) == None
 
-# def test_csll_deleteHead():
-#     # Test 1: Empty list
-#     csll = csll()
-#     csll.deleteHead()
-#     assert csll.head == None
-#     # assert csll.tail == None
-#     assert csll.size == 0
+def test_csll_deleteHead():
+    # Test 1: Empty list
+    csll = CSLL()
+    csll.deleteHead()
+    assert csll.head == None
+    assert csll.tail == None
+    assert csll.size == 0
 
-#     # Test 2: Single element list
-#     node1 = Node(1)
-#     # csll.insertTail(node1)
-#     csll.deleteHead()
-#     assert csll.head == None
-#     # assert csll.tail == None
-#     assert csll.size == 0
+    # Test 2: Single element list
+    node1 = Node(1)
+    csll.insertTail(node1)
+    csll.deleteHead()
+    assert csll.head == None
+    assert csll.tail == None
+    assert csll.size == 0
 
-#     # Test 3: Multiple element list
-#     node2 = Node(2)
-#     node3 = Node(3)
-#     node4 = Node(4)
-#     # csll.insertTail(node2)
-#     # csll.insertTail(node3)
-#     # csll.insertTail(node4)
-#     csll.deleteHead()
-#     assert csll.head.data == 3
-#     # assert csll.tail.data == 4
-#     assert csll.size == 2
-# # def test_csll_deleteTail():
-#     # Test 1: Empty list
-#     csll = csll()
-#     # csll.deleteTail()
-#     assert csll.head == None
-#     # assert csll.tail == None
-#     assert csll.size == 0
+    # Test 3: Multiple element list
+    node2 = Node(2)
+    node3 = Node(3)
+    node4 = Node(4)
+    csll.insertTail(node2)
+    csll.insertTail(node3)
+    csll.insertTail(node4)
+    csll.deleteHead()
+    assert csll.head.data == 3
+    assert csll.tail.data == 4
+    assert csll.size == 2
+    assert csll.head.next.data == 4
 
-#     # Test 2: Single element list
-#     node1 = Node(1)
-#     # csll.insertTail(node1)
-#     # csll.deleteTail()
-#     assert csll.head == None
-#     # assert csll.tail == None
-#     assert csll.size == 0
+def test_csll_deleteTail():
+    # Test 1: Empty list
+    csll = CSLL()
+    csll.deleteTail()
+    assert csll.head == None
+    assert csll.tail == None
+    assert csll.size == 0
 
-#     # Test 3: Multiple element list
-#     node2 = Node(2)
-#     node3 = Node(3)
-#     node4 = Node(4)
-#     # csll.insertTail(node2)
-#     # csll.insertTail(node3)
-#     # csll.insertTail(node4)
-#     # csll.deleteTail()
-#     assert csll.head.data == 2
-#     # assert csll.tail.data == 3
-#     assert csll.size == 2
+    # Test 2: Single element list
+    node1 = Node(1)
+    csll.insertTail(node1)
+    csll.deleteTail()
+    assert csll.head == None
+    assert csll.tail == None
+    assert csll.size == 0
 
-# def test_csll_delete():
-#     # Test 1: Empty list
-#     csll = csll()
-#     node1 = Node(1)
-#     csll.delete(node1)
-#     assert csll.head == None
-#     # assert csll.tail == None
-#     assert csll.size == 0
+    # Test 3: Multiple element list
+    node2 = Node(2)
+    node3 = Node(3)
+    node4 = Node(4)
+    csll.insertTail(node2)
+    csll.insertTail(node3)
+    csll.insertTail(node4)
+    csll.deleteTail()
+    assert csll.head.data == 2
+    assert csll.tail.data == 3
+    assert csll.size == 2
+    assert csll.head.next.data == 3
+    assert csll.tail.next == csll.head
 
-#     # Test 2: Single element list
-#     # csll.insertTail(node1)
-#     csll.delete(node1)
-#     assert csll.head == None
-#     # assert csll.tail == None
-#     assert csll.size == 0
+def test_csll_delete():
+    csll = CSLL()
+    node1 = Node(1)
+    node2 = Node(2)
+    node3 = Node(3)
 
-#     # Test 3: Delete middle element
-#     node2 = Node(2)
-#     node3 = Node(3)
-#     node4 = Node(4)
-#     # csll.insertTail(node1)
-#     # csll.insertTail(node2)
-#     # csll.insertTail(node3)
-#     # csll.insertTail(node4)
-#     csll.delete(node3)
-#     assert csll.head.data == 1
-#     # assert csll.tail.data == 4
-#     assert csll.size == 3
-#     assert csll.head.next.data == 2
-#     assert csll.head.next.next.data == 4
+    # Test 1: Empty list
+    csll.delete(node1)
+    assert csll.head == None
+    assert csll.tail == None
+    assert csll.size == 0
 
-#     # Test 4: Delete head
-#     csll.delete(node1)
-#     assert csll.head.data == 2
-#     # assert csll.tail.data == 4
-#     assert csll.size == 2
-#     assert csll.head.next.data == 4
-#     # assert csll.tail.data == 4
+    # Test 2: Single element list
+    csll.insertTail(node1)
+    csll.delete(node1)
+    assert csll.head == None
+    assert csll.tail == None
+    assert csll.size == 0
 
-#     # Test 5: Not found
-#     node5 = Node(5)
-#     csll.delete(node5)
-#     assert csll.head.data == 2
-#     # assert csll.tail.data == 4
-#     assert csll.size == 2
+    # Test 3: Delete middle element
+    csll.insertTail(node1)
+    csll.insertTail(node2)
+    csll.insertTail(node3)
+    csll.delete(node2)
+    assert csll.head.data == 1
+    assert csll.tail.data == 3
+    assert csll.size == 2
+    assert csll.head.next.data == 3
+    
+    # Test 4: Delete head
+    csll.delete(node1)
+    assert csll.head.data == 3
+    assert csll.tail.data == 3
+    assert csll.size == 1
+    assert csll.head.next.data == 3
 
-# def test_csll_sort():
-#     # Test 1: Empty list
-#     csll = csll()
-#     csll.sort()
-#     assert csll.head == None
-#     # assert csll.tail == None
-#     assert csll.size == 0
+    # Test 5: Not found
+    node5 = Node(5)
+    csll.delete(node5)
+    assert csll.head.data == 3
+    assert csll.tail.data == 3
+    assert csll.size == 1
 
-#     # Test 2: Single element list
-#     node1 = Node(1)
-#     # csll.insertTail(node1)
-#     csll.sort()
-#     assert csll.head.data == 1
-#     # assert csll.tail.data == 1
-#     assert csll.size == 1
+    # Test 6: Delete tail
+    csll.delete(node3)
+    assert csll.head == None
+    assert csll.tail == None
+    assert csll.size == 0
 
-#     # Test 3: Multiple element list
-#     node2 = Node(2)
-#     node3 = Node(3)
-#     node4 = Node(4)
-#     # csll.insertTail(node4)
-#     # csll.insertTail(node3)
-#     # csll.insertTail(node2)
-#     csll.sort()
-#     assert csll.head.data == 1
-#     # assert csll.tail.data == 4
-#     assert csll.size == 4
-#     assert csll.head.next.data == 2
-#     assert csll.head.next.next.data == 3
-#     assert csll.head.next.next.next.data == 4
+def test_csll_sort():
+    # Test 1: Empty list
+    csll = CSLL()
+    csll.sort()
+    assert csll.head == None
+    assert csll.tail == None
+    assert csll.size == 0
 
-# def test_csll_clear():
-#     # Test 1: Empty list
-#     csll = csll()
-#     csll.clear()
-#     assert csll.head == None
-#     # assert csll.tail == None
-#     assert csll.size == 0
+    # Test 2: Single element list
+    node1 = Node(1)
+    csll.insertTail(node1)
+    csll.sort()
+    assert csll.head.data == 1
+    assert csll.tail.data == 1
+    assert csll.size == 1
 
-#     # Test 2: Single element list
-#     node1 = Node(1)
-#     # csll.insertTail(node1)
-#     csll.clear()
-#     assert csll.head == None
-#     # assert csll.tail == None
-#     assert csll.size == 0
+    # Test 3: Multiple element list
+    node2 = Node(2)
+    node3 = Node(3)
+    node4 = Node(4)
+    csll.insertTail(node4)
+    csll.insertTail(node3)
+    csll.insertTail(node2)
+    csll.sort()
+    assert csll.head.data == 1
+    assert csll.tail.data == 4
+    assert csll.size == 4
+    assert csll.head.next.data == 2
+    assert csll.head.next.next.data == 3
+    assert csll.head.next.next.next.data == 4
 
-#     # Test 3: Multiple element list
-#     node2 = Node(2)
-#     node3 = Node(3)
-#     node4 = Node(4)
-#     # csll.insertTail(node2)
-#     # csll.insertTail(node3)
-#     # csll.insertTail(node4)
-#     csll.clear()
-#     assert csll.head == None
-#     # assert csll.tail == None
-#     assert csll.size == 0
+def test_csll_clear():
+    csll = CSLL()
+    node1 = Node(1)
+    node2 = Node(2)
+    node3 = Node(3)
+    node4 = Node(4)
+    # Test 1: Empty list
+    csll.clear()
+    assert csll.head == None
+    assert csll.tail == None
+    assert csll.size == 0
+
+    # Test 2: Single element list
+    csll.insertTail(node1)
+    csll.clear()
+    assert csll.head == None
+    assert csll.tail == None
+    assert csll.size == 0
+
+    # Test 3: Multiple element list
+    csll.insertTail(node2)
+    csll.insertTail(node3)
+    csll.insertTail(node4)
+    csll.clear()
+    assert csll.head == None
+    assert csll.tail == None
+    assert csll.size == 0

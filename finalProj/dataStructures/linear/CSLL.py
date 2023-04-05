@@ -133,9 +133,11 @@ class CSLL:
         if self.head is None:
             print("List is empty")
         else:
-            # if(self.tail == self.head):
-                # self.tail = None
-            self.head = self.head.next
+            if(self.size == 1):
+                self.head = None
+                self.tail = None
+            else:
+                self.head = self.head.next
             self.size -= 1
     
     # deleteTail()
@@ -146,15 +148,20 @@ class CSLL:
         else:
             current = self.head
             previous = None
-            for i in range(self.size):
-                previous = current
-                current = current.next
-            if previous is None:
+            if(self.size == 1):
                 self.head = None
-                # self.tail = None
+                self.tail = None
             else:
-                previous.next = None
-                # self.tail = previous
+                for i in range(self.size - 1):
+                    previous = current
+                    current = current.next
+                if previous is None:
+                    self.head = None
+                    self.tail = None
+                else:
+                    previous.next = None
+                    self.tail = previous
+                    self.tail.next = self.head
             self.size -= 1
 
     # delete()
@@ -168,12 +175,15 @@ class CSLL:
             for i in range(self.size):
                 if current == node:
                     if previous is None:
-                        self.head = node.next
-
+                        if(self.size == 1):
+                            self.head = None
+                            self.tail = None
+                        else:
+                            if current.next == self.tail:
+                                self.tail.next = self.tail
+                            self.head = current.next
                     else:
                         previous.next = current.next
-                    # if(current.next is None):
-                        # self.tail = previous
                     self.size -= 1
                     return
                 previous = current
@@ -198,7 +208,7 @@ class CSLL:
     #   clears the list
     def clear(self):
         self.head = None
-        # self.tail = None
+        self.tail = None
         self.size = 0
     
     # print()
@@ -208,8 +218,8 @@ class CSLL:
         sortedStatus = "Sorted" if self.isSorted() else "Unsorted"
         print("SLL Sorted:", sortedStatus)
         print("SLL Content:", end="")
+        temp = self.head
         for i in range(self.size):
-            temp = self.head
             print(temp.data, end=" ")
             temp = temp.next
         print()

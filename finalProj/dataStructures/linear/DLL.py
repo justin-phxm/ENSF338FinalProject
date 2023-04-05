@@ -166,8 +166,8 @@ class DLL:
         sortedStatus = "Sorted" if self.isSorted() else "Unsorted"
         print("SLL Sorted:", sortedStatus)
         print("SLL Content:", end="")
+        temp = self.head
         for i in range(self.size):
-            temp = self.head
             print(temp.data, end=" ")
             temp = temp.next
         print()
