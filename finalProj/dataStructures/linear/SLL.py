@@ -7,6 +7,9 @@ class SLL:
         self.size = 0 if node==None else 1
     def __len__(self):
         return self.size
+    
+    # insertHead(node)
+    #   inserts a node at the head of the list
     def insertHead(self, node):
         if self.head is None:
             self.head = node
