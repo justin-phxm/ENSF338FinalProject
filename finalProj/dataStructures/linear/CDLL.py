@@ -1,6 +1,7 @@
 # from dataStructures.nodes.Node import Node
-from DNode import DNode
-class CDLL:
+# from DNode import DNode
+from DLL import DLL
+class CDLL(DLL):
     # CDLL Constructor
     #   creates a circular singly linked list
     def __init__(self, node=None):
@@ -10,10 +11,6 @@ class CDLL:
         if(node is not None):
             node.next = self.head
             node.previous = self.tail
-    # __len__()
-    #   returns the size of the list
-    def __len__(self):
-        return self.size
     
     # insertHead()
     #   inserts a node at the head of the list
@@ -203,28 +200,6 @@ class CDLL:
                 previous = current
                 current = current.next
             print("Node not found")
-
-    # sort()
-    #   sorts the list in ascending order
-    def sort(self):
-        if self.head is None:
-            print("List is empty")
-        else:
-            for i in range(self.size):
-                current = self.head
-                for j in range(self.size - i - 1):
-                    if(current.data > current.next.data):
-                        temp = current.data
-                        current.data = current.next.data
-                        current.next.data = temp
-                    current = current.next
-    
-    # clear()
-    #   clears the list
-    def clear(self):
-        self.head = None
-        self.tail = None
-        self.size = 0
     
     # print()
     #   prints the list

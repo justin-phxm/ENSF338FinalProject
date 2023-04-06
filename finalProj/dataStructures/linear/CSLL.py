@@ -1,6 +1,7 @@
 # from dataStructures.nodes.Node import Node
-from DNode import DNode
-class CSLL:
+# from DNode import DNode
+from SLL import SLL
+class CSLL(SLL):
     # CSLL Constructor
     #   creates a circular singly linked list
     def __init__(self, node=None):
@@ -9,11 +10,6 @@ class CSLL:
         self.size = 0 if node==None else 1
         if(node is not None):
             node.next = self.head
-    
-    # __len__()
-    #   returns the size of the list
-    def __len__(self):
-        return self.size
     
     # insertHead()
     #   inserts a node at the head of the list
@@ -71,7 +67,6 @@ class CSLL:
     def isSorted(self):
         current = self.head
         for i in range(self.size - 1):
-            # if current.next is not self.head:
             if current.data > current.next.data:
                 return False
             current = current.next
@@ -85,11 +80,9 @@ class CSLL:
             self.head = node
             self.tail = node
             node.next = self.head
-            # self.size += 1
         else:
             current = self.head
             for i in range(self.size - 1):
-                # if current.next is not None:
                 if current.data > current.next.data:
                     self.sort()
                 current = current.next
@@ -202,13 +195,6 @@ class CSLL:
                         current.data = current.next.data
                         current.next.data = temp
                     current = current.next
-    
-    # clear()
-    #   clears the list
-    def clear(self):
-        self.head = None
-        self.tail = None
-        self.size = 0
     
     # print()
     #   prints the list

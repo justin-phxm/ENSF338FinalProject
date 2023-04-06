@@ -189,6 +189,7 @@ def test_SLL_deleteHead():
     assert sll.head.data == 3
     assert sll.tail.data == 4
     assert sll.size == 2
+
 def test_SLL_deleteTail():
     # Test 1: Empty list
     sll = SLL()
