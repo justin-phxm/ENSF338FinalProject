@@ -134,13 +134,17 @@ def test_stackLL_deleteHead():
 def test_stackLL_pop():
     stackLL = StackLL()
     Dnode1 = DNode(1)
-    # Test 1: Single element list
+    Dnode2 = DNode(2)
+    Dnode3 = DNode(3)
+    # Test 1: Multi element list
     stackLL.push(Dnode1)
+    stackLL.push(Dnode2)
+    stackLL.push(Dnode3)
     poppedNode = stackLL.pop()
-    assert stackLL.head == None
-    assert stackLL.tail == None
-    assert stackLL.size == 0
-    assert poppedNode == Dnode1
+    assert stackLL.head == Dnode2
+    assert stackLL.tail == Dnode1
+    assert stackLL.size == 2
+    assert poppedNode == Dnode3
 
 def test_stackLL_deleteTail():
     stackLL = StackLL()

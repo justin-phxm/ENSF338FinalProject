@@ -2,16 +2,14 @@
 from SLL import SLL
 from DNode import DNode
 
-# StackLL
+# QueueLL
 #   A stack implemented by extending SLL
-class StackLL(SLL):
-    # push(node)
-    #   inserts a node at the head of the list
-    def push(self, node):
-        push = self.insertHead(node)
-        
-    def insertTail(self, node):
-        return 
+class QueueLL(SLL):
+    def insertHead(self, node):
+        return
+
+    def enqueue(self, node):
+        enqueue = self.insertTail(node)
 
     def insert(self, node, index):
         return
@@ -21,24 +19,23 @@ class StackLL(SLL):
         
     def deleteHead(self):
         return
-    
-    # pop()
-    #   removes and returns the tail of the list
-    def pop(self):
+        
+    def dequeue(self):
         returnHead = self.head
         super().deleteHead()
         return returnHead
     
-    def deleteTail(self):
-        return
     def delete(self, node):
         return
-
+    
+    def deleteTail(self):
+        return
+    
     def print(self):
-        print("StackLL length:", self.size)
+        print("QueueLL length:", self.size)
         sortedStatus = "Sorted" if self.isSorted() else "Unsorted"
-        print("StackLL Sorted:", sortedStatus)
-        print("StackLL Content:", end="")
+        print("QueueLL Sorted:", sortedStatus)
+        print("QueueLL Content:", end="")
         temp = self.head
         for i in range(self.size):
             print(temp.data, end=" ")
