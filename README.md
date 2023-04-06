@@ -8,6 +8,6 @@
 
 | Member | Tasks Completed | Total Work Done |
 | :----: | :-------------: | :-------------: |
-| Justin Pham | SLL, DLL,... <br> | XX% |
-| Angelo Troncone |  <br> | XX% |
+| Justin Pham | Linear Structures <br> | 50% |
+| Angelo Troncone | TreeStructures <br> | 50% |
 </div>
