@@ -40,6 +40,7 @@ def test_SLL_insertTail():
     assert sll.head.data == 1
     assert sll.tail.data == 2
     assert sll.size == 2
+
 def test_SLL_insert():
     # Test 1: Insert at head
     sll = SLL()
@@ -48,12 +49,14 @@ def test_SLL_insert():
     assert sll.head.data == 1
     assert sll.tail.data == 1
     assert sll.size == 1
+    
     # Test 2: Insert at tail
     node2 = Node(2)
     sll.insert(node2, 1)
     assert sll.head.data == 1
     assert sll.tail.data == 2
     assert sll.size == 2
+    
     # Test 3: Insert in middle
     node3 = Node(3)
     sll.insert(node3, 1)
@@ -62,6 +65,7 @@ def test_SLL_insert():
     assert sll.size == 3
     assert sll.head.next.data == 3
     assert sll.head.next.next.data == 2
+    
     # Test 4: Insert at invalid index
     node4 = Node(4)
     exceptionRaised = False
@@ -73,6 +77,7 @@ def test_SLL_insert():
     assert sll.head.data == 1
     assert sll.tail.data == 2
     assert sll.size == 3
+    
     # Test 5: Insert at invalid index
     node5 = Node(5)
     exceptionRaised = False

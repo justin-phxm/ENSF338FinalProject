@@ -100,7 +100,6 @@ class CSLL:
                     if previous is None:
                         node.next = current
                         self.head = node
-                        self.last.next = node
                     else:
                         previous.next = node
                         node.next = current
@@ -214,10 +213,10 @@ class CSLL:
     # print()
     #   prints the list
     def print(self):
-        print("SLL length:", self.size)
+        print("CSLL length:", self.size)
         sortedStatus = "Sorted" if self.isSorted() else "Unsorted"
-        print("SLL Sorted:", sortedStatus)
-        print("SLL Content:", end="")
+        print("CSLL Sorted:", sortedStatus)
+        print("CSLL Content:", end="")
         temp = self.head
         for i in range(self.size):
             print(temp.data, end=" ")

@@ -26,6 +26,7 @@ class SLL:
         self.size += 1
 
     # insert(node, index)
+    #   inserts a node at the given index
     def insert(self, node, index):
         if (index < 0 or index > self.size):
             print("Index out of range"  )
@@ -44,6 +45,9 @@ class SLL:
                 if node.next is None:
                     self.tail = node
             self.size += 1
+
+    # isSorted()
+    #   returns true if the list is sorted
     def isSorted(self):
         current = self.head
         while current is not None:

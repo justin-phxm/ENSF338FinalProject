@@ -1,10 +1,15 @@
 # from dataStructures.nodes.Node import Node
 from DNode import DNode
 class DLL:
+    # DLL Constructor
+    #   creates a doubly linked list
     def __init__(self, node=None):
         self.head = node
         self.tail = node
         self.size = 0 if node==None else 1
+
+    # __len__()
+    #   returns the size of the list
     def __len__(self):
         return self.size
     
@@ -162,10 +167,10 @@ class DLL:
         self.tail = None
         self.size = 0
     def print(self):
-        print("SLL length:", self.size)
+        print("DLL length:", self.size)
         sortedStatus = "Sorted" if self.isSorted() else "Unsorted"
-        print("SLL Sorted:", sortedStatus)
-        print("SLL Content:", end="")
+        print("DLL Sorted:", sortedStatus)
+        print("DLL Content:", end="")
         temp = self.head
         for i in range(self.size):
             print(temp.data, end=" ")
