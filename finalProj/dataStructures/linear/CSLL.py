@@ -1,5 +1,5 @@
 # from dataStructures.nodes.Node import Node
-from Node import Node
+from DNode import DNode
 class CSLL:
     # CSLL Constructor
     #   creates a circular singly linked list

@@ -1,5 +1,5 @@
 # from dataStructures.nodes.Node import Node
-from Node import Node
+from DNode import DNode
 class SLL:
     def __init__(self, node=None):
         self.head = node

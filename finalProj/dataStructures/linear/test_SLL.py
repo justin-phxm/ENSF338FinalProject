@@ -1,42 +1,42 @@
 from SLL import SLL
-from Node import Node
+from DNode import DNode
 def test_SLL_Constructors():
     sll = SLL()
     assert sll.head == None
     assert sll.tail == None
     assert sll.size == 0
-    myNode = Node(1)
-    sll1 = SLL(myNode)
+    DmyNode = DNode(1)
+    sll1 = SLL(DmyNode)
     assert sll1.head.data == 1
     assert sll1.tail.data == 1
     assert sll1.size == 1
 def test_SLL_len():
     sll = SLL()
     assert len(sll) == 0
-    myNode = Node(1)
-    sll1 = SLL(myNode)
+    DmyNode = DNode(1)
+    sll1 = SLL(DmyNode)
     assert len(sll1) == 1
 def test_SLL_insertHead():
     sll = SLL()
-    node1 = Node(1)
-    sll.insertHead(node1)
+    Dnode1 = DNode(1)
+    sll.insertHead(Dnode1)
     assert sll.head.data == 1
     assert sll.tail.data == 1
     assert sll.size == 1
-    node2 = Node(2)
-    sll.insertHead(node2)
+    Dnode2 = DNode(2)
+    sll.insertHead(Dnode2)
     assert sll.head.data == 2
     assert sll.tail.data == 1
     assert sll.size == 2
 def test_SLL_insertTail():
     sll = SLL()
-    node1 = Node(1)
-    sll.insertTail(node1)
+    Dnode1 = DNode(1)
+    sll.insertTail(Dnode1)
     assert sll.head.data == 1
     assert sll.tail.data == 1
     assert sll.size == 1
-    node2 = Node(2)
-    sll.insertTail(node2)
+    Dnode2 = DNode(2)
+    sll.insertTail(Dnode2)
     assert sll.head.data == 1
     assert sll.tail.data == 2
     assert sll.size == 2
@@ -44,22 +44,22 @@ def test_SLL_insertTail():
 def test_SLL_insert():
     # Test 1: Insert at head
     sll = SLL()
-    node1 = Node(1)
-    sll.insert(node1, 0)
+    Dnode1 = DNode(1)
+    sll.insert(Dnode1, 0)
     assert sll.head.data == 1
     assert sll.tail.data == 1
     assert sll.size == 1
     
     # Test 2: Insert at tail
-    node2 = Node(2)
-    sll.insert(node2, 1)
+    Dnode2 = DNode(2)
+    sll.insert(Dnode2, 1)
     assert sll.head.data == 1
     assert sll.tail.data == 2
     assert sll.size == 2
     
     # Test 3: Insert in middle
-    node3 = Node(3)
-    sll.insert(node3, 1)
+    Dnode3 = DNode(3)
+    sll.insert(Dnode3, 1)
     assert sll.head.data == 1
     assert sll.tail.data == 2
     assert sll.size == 3
@@ -67,10 +67,10 @@ def test_SLL_insert():
     assert sll.head.next.next.data == 2
     
     # Test 4: Insert at invalid index
-    node4 = Node(4)
+    Dnode4 = DNode(4)
     exceptionRaised = False
     try:
-        sll.insert(node4, -1)
+        sll.insert(Dnode4, -1)
     except:
         exceptionRaised = True
     assert exceptionRaised
@@ -79,10 +79,10 @@ def test_SLL_insert():
     assert sll.size == 3
     
     # Test 5: Insert at invalid index
-    node5 = Node(5)
+    Dnode5 = DNode(5)
     exceptionRaised = False
     try:
-        sll.insert(node5, 4)
+        sll.insert(Dnode5, 4)
     except:
         exceptionRaised = True
     assert exceptionRaised
@@ -96,46 +96,46 @@ def test_SLL_isSorted():
     assert sll.isSorted() == True
 
     # Test 2: Single element list
-    node1 = Node(1)
-    sll.insertTail(node1)
+    Dnode1 = DNode(1)
+    sll.insertTail(Dnode1)
     assert sll.isSorted() == True
 
     # Test 3: Sorted list
-    node2 = Node(2)
-    sll.insertTail(node2)
+    Dnode2 = DNode(2)
+    sll.insertTail(Dnode2)
     assert sll.isSorted() == True
 
     # Test 4: Unsorted list
-    node3 = Node(3)
-    sll.insertHead(node3)
+    Dnode3 = DNode(3)
+    sll.insertHead(Dnode3)
     assert sll.isSorted() == False
 
 def test_SLL_sortedInsert():
     # Test 1: Empty list
     sll = SLL()
-    node1 = Node(1)
-    sll.sortedInsert(node1)
+    Dnode1 = DNode(1)
+    sll.sortedInsert(Dnode1)
     assert sll.head.data == 1
     assert sll.tail.data == 1
     assert sll.size == 1
 
     # Test 2: Insert at tail
-    node2 = Node(4)
-    sll.sortedInsert(node2)
+    Dnode2 = DNode(4)
+    sll.sortedInsert(Dnode2)
     assert sll.head.data == 1
     assert sll.tail.data == 4
     assert sll.size == 2
 
     # Test 3: Insert at head
-    node3 = Node(1)
-    sll.sortedInsert(node3)
+    Dnode3 = DNode(1)
+    sll.sortedInsert(Dnode3)
     assert sll.head.data == 1
     assert sll.tail.data == 4
     assert sll.size == 3
 
     # Test 4: Insert in middle
-    node4 = Node(3)
-    sll.sortedInsert(node4)
+    Dnode4 = DNode(3)
+    sll.sortedInsert(Dnode4)
     assert sll.head.data == 1
     assert sll.tail.data == 4
     assert sll.size == 4
@@ -145,22 +145,22 @@ def test_SLL_sortedInsert():
 def test_SLL_search():
     # Test 1: Empty list
     sll = SLL()
-    node1 = Node(1)
-    assert sll.search(node1) == None
+    Dnode1 = DNode(1)
+    assert sll.search(Dnode1) == None
 
     # Test 2: Single element list
-    sll.insertTail(node1)
-    assert sll.search(node1) == node1
+    sll.insertTail(Dnode1)
+    assert sll.search(Dnode1) == Dnode1
 
     # Test 3: Multiple element list
-    node2 = Node(2)
-    sll.insertTail(node2)
-    assert sll.search(node1) == node1
-    assert sll.search(node2) == node2
+    Dnode2 = DNode(2)
+    sll.insertTail(Dnode2)
+    assert sll.search(Dnode1) == Dnode1
+    assert sll.search(Dnode2) == Dnode2
 
     # Test 4: Not found
-    node3 = Node(3)
-    assert sll.search(node3) == None
+    Dnode3 = DNode(3)
+    assert sll.search(Dnode3) == None
 
 def test_SLL_deleteHead():
     # Test 1: Empty list
@@ -171,20 +171,20 @@ def test_SLL_deleteHead():
     assert sll.size == 0
 
     # Test 2: Single element list
-    node1 = Node(1)
-    sll.insertTail(node1)
+    Dnode1 = DNode(1)
+    sll.insertTail(Dnode1)
     sll.deleteHead()
     assert sll.head == None
     assert sll.tail == None
     assert sll.size == 0
 
     # Test 3: Multiple element list
-    node2 = Node(2)
-    node3 = Node(3)
-    node4 = Node(4)
-    sll.insertTail(node2)
-    sll.insertTail(node3)
-    sll.insertTail(node4)
+    Dnode2 = DNode(2)
+    Dnode3 = DNode(3)
+    Dnode4 = DNode(4)
+    sll.insertTail(Dnode2)
+    sll.insertTail(Dnode3)
+    sll.insertTail(Dnode4)
     sll.deleteHead()
     assert sll.head.data == 3
     assert sll.tail.data == 4
@@ -198,20 +198,20 @@ def test_SLL_deleteTail():
     assert sll.size == 0
 
     # Test 2: Single element list
-    node1 = Node(1)
-    sll.insertTail(node1)
+    Dnode1 = DNode(1)
+    sll.insertTail(Dnode1)
     sll.deleteTail()
     assert sll.head == None
     assert sll.tail == None
     assert sll.size == 0
 
     # Test 3: Multiple element list
-    node2 = Node(2)
-    node3 = Node(3)
-    node4 = Node(4)
-    sll.insertTail(node2)
-    sll.insertTail(node3)
-    sll.insertTail(node4)
+    Dnode2 = DNode(2)
+    Dnode3 = DNode(3)
+    Dnode4 = DNode(4)
+    sll.insertTail(Dnode2)
+    sll.insertTail(Dnode3)
+    sll.insertTail(Dnode4)
     sll.deleteTail()
     assert sll.head.data == 2
     assert sll.tail.data == 3
@@ -220,28 +220,28 @@ def test_SLL_deleteTail():
 def test_SLL_delete():
     # Test 1: Empty list
     sll = SLL()
-    node1 = Node(1)
-    sll.delete(node1)
+    Dnode1 = DNode(1)
+    sll.delete(Dnode1)
     assert sll.head == None
     assert sll.tail == None
     assert sll.size == 0
 
     # Test 2: Single element list
-    sll.insertTail(node1)
-    sll.delete(node1)
+    sll.insertTail(Dnode1)
+    sll.delete(Dnode1)
     assert sll.head == None
     assert sll.tail == None
     assert sll.size == 0
 
     # Test 3: Delete middle element
-    node2 = Node(2)
-    node3 = Node(3)
-    node4 = Node(4)
-    sll.insertTail(node1)
-    sll.insertTail(node2)
-    sll.insertTail(node3)
-    sll.insertTail(node4)
-    sll.delete(node3)
+    Dnode2 = DNode(2)
+    Dnode3 = DNode(3)
+    Dnode4 = DNode(4)
+    sll.insertTail(Dnode1)
+    sll.insertTail(Dnode2)
+    sll.insertTail(Dnode3)
+    sll.insertTail(Dnode4)
+    sll.delete(Dnode3)
     assert sll.head.data == 1
     assert sll.tail.data == 4
     assert sll.size == 3
@@ -249,7 +249,7 @@ def test_SLL_delete():
     assert sll.head.next.next.data == 4
 
     # Test 4: Delete head
-    sll.delete(node1)
+    sll.delete(Dnode1)
     assert sll.head.data == 2
     assert sll.tail.data == 4
     assert sll.size == 2
@@ -257,8 +257,8 @@ def test_SLL_delete():
     assert sll.tail.data == 4
 
     # Test 5: Not found
-    node5 = Node(5)
-    sll.delete(node5)
+    Dnode5 = DNode(5)
+    sll.delete(Dnode5)
     assert sll.head.data == 2
     assert sll.tail.data == 4
     assert sll.size == 2
@@ -272,20 +272,20 @@ def test_SLL_sort():
     assert sll.size == 0
 
     # Test 2: Single element list
-    node1 = Node(1)
-    sll.insertTail(node1)
+    Dnode1 = DNode(1)
+    sll.insertTail(Dnode1)
     sll.sort()
     assert sll.head.data == 1
     assert sll.tail.data == 1
     assert sll.size == 1
 
     # Test 3: Multiple element list
-    node2 = Node(2)
-    node3 = Node(3)
-    node4 = Node(4)
-    sll.insertTail(node4)
-    sll.insertTail(node3)
-    sll.insertTail(node2)
+    Dnode2 = DNode(2)
+    Dnode3 = DNode(3)
+    Dnode4 = DNode(4)
+    sll.insertTail(Dnode4)
+    sll.insertTail(Dnode3)
+    sll.insertTail(Dnode2)
     sll.sort()
     assert sll.head.data == 1
     assert sll.tail.data == 4
@@ -303,20 +303,20 @@ def test_SLL_clear():
     assert sll.size == 0
 
     # Test 2: Single element list
-    node1 = Node(1)
-    sll.insertTail(node1)
+    Dnode1 = DNode(1)
+    sll.insertTail(Dnode1)
     sll.clear()
     assert sll.head == None
     assert sll.tail == None
     assert sll.size == 0
 
     # Test 3: Multiple element list
-    node2 = Node(2)
-    node3 = Node(3)
-    node4 = Node(4)
-    sll.insertTail(node2)
-    sll.insertTail(node3)
-    sll.insertTail(node4)
+    Dnode2 = DNode(2)
+    Dnode3 = DNode(3)
+    Dnode4 = DNode(4)
+    sll.insertTail(Dnode2)
+    sll.insertTail(Dnode3)
+    sll.insertTail(Dnode4)
     sll.clear()
     assert sll.head == None
     assert sll.tail == None
