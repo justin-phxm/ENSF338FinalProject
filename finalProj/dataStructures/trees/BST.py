@@ -1,6 +1,6 @@
-from dataStructures.nodes import TNode
+from TNode import TNode
 
-class BSTree:
+class BST:
 
     # Overloaded constructor
     # Default Constructor initializes root to null
@@ -36,57 +36,100 @@ class BSTree:
         else:
             new_node = data
         
-        parent_node = None
-        current_node = self.root
-        while current_node != None:
-            parent_node = current_node
-            if new_node.data <= current_node.data:
-                current_node = current_node.left_node
+        parent = None
+        current = self.root
+        while current != None:
+            parent = current
+            if new_node.get_data() <= current.get_data():
+                current = current.get_left_node()
             else:
-                current_node = current_node.right_node
+                current = current.get_right_node()
         
         if self.root == None:
             self.root = new_node
-        elif new_node.data <= parent_node.data:
-            parent_node.left_node = new_node
+        elif new_node.get_data() <= parent.get_data():
+            parent.set_left_node(new_node)
+            parent.get_left_node().set_parent_node(parent)
         else:
-            parent_node.right_node = new_node
+            parent.set_right_node(new_node)
+            parent.get_right_node().set_parent_node(parent)
+        
         
 
     
     # finds the node with val as data and deletes it,
     # if not found prints a statement that the value is not in the tree
     def delete(self, value):
-        current_node = self.root
-        parent_node = None
+        current = self.root
+        parent = None
 
-        while current_node != None:
-            parent_node = current_node
-            if value == current_node.data:
-                pass
-            elif value <= current_node.data:
-                current_node = current_node.left
+        while current != None:
+            
+            # The value was found and now will be deleted
+            if value == current.get_data():
+                # Case 1: Where the node to be deleted is a leaf node
+                if current.get_left_node() == None and current.get_right_node() == None:
+                    if current == parent.get_left_node():
+                        parent.set_left_node(None)
+                    else:
+                        parent.set_right_node(None)
+
+                # Case 2: Where the node to be deleted has only one child
+                elif current.get_left_node() == None or current.get_right_node() == None:
+                    if current == parent.get_left_node():
+                        if current.get_left_node() == None:
+                            parent.set_left_node(current.get_right_node())
+                        else:
+                            parent.set_left_node(current.get_left_node())
+                    else:
+                        if current.get_left_node() == None:
+                            parent.set_right_node(current.get_right_node())
+                        else:
+                            parent.set_right_node(current.get_left_node())
+                
+                # Case 3: Where the node to be deleted has two children
+                else:
+                    pass
+
+            elif value <= current.get_data():
+                current = current.get_left_node()
+            else:
+                current = current.get_right_node()
+            parent = current.get_parent_node()
+            
         pass
 
     # searches for the node with val as data and returns it
     # or returns null if not found
     def search(self, value):
-        current_node = self.root
-        while current_node != None:
-            parent_node = self.root
-            if value == parent_node.data:
-                return parent_node
-            elif value <= parent_node.data:
-                current_node = current_node.left_node
+        current = self.root
+        while current != None:
+            parent = self.root
+            if value == parent.get_data():
+                return parent
+            elif value <= parent.get_data():
+                current = current.get_left_node()
             else:
-                current_node = current_node.right_node
+                current = current.get_right_node()
         return None
 
     # prints the content data of the tree in ascending order
-    def print_in_order(self):
-        pass
+    def print_in_order(self, current = True):
+        if current != None:
+            self.print_in_order(self.root.get_left_node())
+            print(current.get_data())
+            self.print_in_order(self.root.get_right_node())
+
 
     # prints the content of the tree in Breadth-First order, 
     # each level of the tree will be printed on a separate line
     def printBF(self):
-        pass
+        queue = []
+        queue.append(self.root)
+        while len(queue) > 0:
+            current = queue.pop(0) # Remove from front of queue
+            print(current.get_data())
+            if current.left is not None:
+                queue.append(current.get_left_node())
+            if current.right is not None:
+                queue.append(current.get_right_node())
