@@ -64,18 +64,32 @@ class BST:
         parent = None
 
         while current != None:
-            
             # The value was found and now will be deleted
             if value == current.get_data():
+                
                 # Case 1: Where the node to be deleted is a leaf node
                 if current.get_left_node() == None and current.get_right_node() == None:
+                    # If the node that is getting deleted is the root
+                    if current == self.root:
+                        self.root = None
+                        return
+
                     if current == parent.get_left_node():
                         parent.set_left_node(None)
                     else:
                         parent.set_right_node(None)
+                    return
 
                 # Case 2: Where the node to be deleted has only one child
                 elif current.get_left_node() == None or current.get_right_node() == None:
+                    # If the node that is getting deleted is the root
+                    if current == self.root:
+                        if current.get_left_node() != None:
+                            self.root = current.get_left_node()
+                        else:
+                            self.root = current.get_right_node()
+                        return
+
                     if current == parent.get_left_node():
                         if current.get_left_node() == None:
                             parent.set_left_node(current.get_right_node())
@@ -86,9 +100,22 @@ class BST:
                             parent.set_right_node(current.get_right_node())
                         else:
                             parent.set_right_node(current.get_left_node())
+                    return
                 
                 # Case 3: Where the node to be deleted has two children
                 else:
+                    # If the node that is getting deleted is the root
+                    # TODO
+
+                    #We look for the smallest node in the right subtree
+                    search_smallest = current.get_right_node()
+                    parent_search_smallest = current
+                    while (search_smallest != None):
+                        parent_search_smallest = search_smallest
+                        search_smallest = search_smallest.get_left_node()
+
+                    current = TNode(parent_search_smallest, None, current.get_parent_node(), current.get_left_node(), current.get_right_node())
+                    parent_search_smallest.set_left_node(None)
                     pass
 
             elif value <= current.get_data():
@@ -96,8 +123,7 @@ class BST:
             else:
                 current = current.get_right_node()
             parent = current.get_parent_node()
-            
-        pass
+        
 
     # searches for the node with val as data and returns it
     # or returns null if not found

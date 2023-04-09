@@ -1,7 +1,8 @@
 
-from dataStructures.nodes import TNode
+from TNode import TNode
+from BST import BST
 
-class AVLTree:
+class AVLTree(BST):
     
     def __init__(self, data):
         self.balance = 0
@@ -12,5 +13,5 @@ class AVLTree:
         self.left_node = None
         self.right_node = None
     
-    def add(self, data):
-        pass
+    
+    
