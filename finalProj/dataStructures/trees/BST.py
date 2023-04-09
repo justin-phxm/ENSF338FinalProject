@@ -21,9 +21,24 @@ class BST:
             else:
                 self.root = data
         else:
-            # TODO Must change the data field of the root
-            # and change the structure of the tree accordingly
-            pass
+            # If the new integer value is less than or equal to the current root value,
+            # the new root will have the old root as its left child and the old root's 
+            # right child as its right child
+            if data <= self.root.get_data():
+                new_root = TNode(data)
+                new_root.set_left_node(self.root)
+                new_root.set_right_node(self.root.get_right_node())
+                self.root.set_right_node(None)
+                self.root = new_root
+            # If the new value is greater than the current root value,
+            # the new root will have the old root as its right child and the old root's
+            # left child as its left child
+            else:
+                new_root = TNode(data)
+                new_root.right = root
+                new_root.left = root.left
+                root.left = None
+                root = new_root
 
     def get_root(self):
         return self.root
