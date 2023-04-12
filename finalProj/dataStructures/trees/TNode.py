@@ -1,13 +1,11 @@
 class TNode:
 
-
-    def __init__(self, data=None, balance=None, P=None, L=None, R=None):
+    def __init__(self, data=None, balance=0, P=None, L=None, R=None):
         self.data = data
         self.balance = balance
         self.parent_node = P
         self.left_node = L
         self.right_node = R
-        
 
     def set_data(self, data):
         self.data = data
@@ -45,5 +43,19 @@ class TNode:
     
     # returns the data member as a string (will be used for the tree prints)
     def toString(self):
+        pass
+
+    # Finds the balance of a node
+    def find_balance(self):
+        left_height = 0
+        right_height = 0
+        current_left = self.left_node
+        current_right = self.right_node
+        while current_left != None:
+            left_height += 1
+            if current_left.left_node != None:
+                current_left = current_left.left
+
+
         pass
 

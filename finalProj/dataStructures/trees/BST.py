@@ -8,8 +8,11 @@ class BST:
     # BST(TNode data) uses the given TNode as the root of the tree
     def __init__(self, data=None):
         
-        if (data == None or type(data) == int):
-            self.root = TNode(data)
+        if (data == None):
+            self.root = None
+
+        if (type(data) == int):
+            self.root = TNode(data=data)
 
         else:
             self.root = data
@@ -45,29 +48,33 @@ class BST:
 
     # If data is int, creates a new node with data val to be inserted into the tree
     # If data is TNode, inserts the node passed as argument into the tree
+
     def insert(self, data):
         if (type(data) == int):
             new_node = TNode(data)
         else:
             new_node = data
+
+        if self.root == None:
+            self.root = new_node
+            return
         
         parent = None
         current = self.root
         while current != None:
             parent = current
+            
             if new_node.get_data() <= current.get_data():
                 current = current.get_left_node()
             else:
                 current = current.get_right_node()
         
-        if self.root == None:
-            self.root = new_node
-        elif new_node.get_data() <= parent.get_data():
+        if new_node.get_data() <= parent.get_data():
             parent.set_left_node(new_node)
-            parent.get_left_node().set_parent_node(parent)
+            new_node.set_parent_node(parent)
         else:
             parent.set_right_node(new_node)
-            parent.get_right_node().set_parent_node(parent)
+            new_node.set_parent_node(parent)
         
         
 
@@ -145,7 +152,9 @@ class BST:
     def search(self, value):
         current = self.root
         while current != None:
-            parent = self.root
+            parent = current
+            if parent.get_data() == None:
+                return None
             if value == parent.get_data():
                 return parent
             elif value <= parent.get_data():
