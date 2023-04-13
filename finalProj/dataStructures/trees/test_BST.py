@@ -13,19 +13,19 @@ def test_BST_Constructors():
 
     # Constructor with int
     second_BST = BST(5)
-    assert second_BST.search(5).get_data() == 5
+    assert second_BST.get_root().get_data() == 5
 
     # Constructor with TNode
     node = TNode(data=3)
     third_BST = BST(node)
-    assert third_BST.search(3).get_data() == 3
+    assert third_BST.get_root().get_data() == 3
 
 def test_BST_insert():
     # Inserting into an empty BST
     first_BST = BST()
     first_BST.insert(5)
 
-    assert first_BST.search(5).get_data() == 5
+    assert first_BST.get_root().get_data() == 5
 
     # Inserting into a BST with just a root node
     new_node = TNode(3)

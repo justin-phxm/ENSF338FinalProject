@@ -9,7 +9,7 @@ class AVL(BST):
         if data == None:
             self.root = None
 
-        if data == type(data):
+        if (type(data) == int):
             self.root = TNode(data=data)
         else:
             self.root = data
@@ -19,7 +19,7 @@ class AVL(BST):
         super().set_root(data)
 
     def get_root(self):
-        return self.root()
+        return self.root
 
     # Not complete, have to balance tree
     # Override
@@ -38,7 +38,7 @@ class AVL(BST):
         # Inserting the new node into the right spot
         if curr_node == None:
             return inserting_node
-        elif inserting_node.get_value() <= curr_node.get_value():
+        elif inserting_node.get_data() <= curr_node.get_data():
             curr_node.set_left_node(self._insert_then_balance(curr_node.get_left_node(), inserting_node))
         else:
             curr_node.set_right_node(self._insert_then_balance(curr_node.get_right_node(), inserting_node))
@@ -53,20 +53,20 @@ class AVL(BST):
         # depending on the balance and the value of the inserting node
 
         # Left Left Case ()
-        if curr_node.get_balance() > 1 and inserting_node.get_value() < curr_node.get_left_node().get_value():
+        if curr_node.get_balance() > 1 and inserting_node.get_data() < curr_node.get_left_node().get_data():
             return self._right_rotation(curr_node)
         
         # Left Right Case ()
-        if curr_node.get_balance() > 1 and inserting_node.get_value() > curr_node.get_left_node().get_value():
+        if curr_node.get_balance() > 1 and inserting_node.get_data() > curr_node.get_left_node().get_data():
             curr_node.set_left_node(self._left_rotation(curr_node.get_left_node()))
             return self._right_rotation(curr_node)
         
         # Right Right Case ()
-        if curr_node.get_balance() < -1 and inserting_node.get_value() > curr_node.get_left_node().get_value():
+        if curr_node.get_balance() < -1 and inserting_node.get_data() > curr_node.get_left_node().get_data():
             return self._left_rotation(curr_node)
 
         # Right Left Case ()
-        if curr_node.get_balance() < -1 and inserting_node.get_value() < curr_node.get_right_node().get_value():
+        if curr_node.get_balance() < -1 and inserting_node.get_data() < curr_node.get_right_node().get_data():
             curr_node.set_right_node(self._right_rotation(curr_node.get_right_node()))
             return self._left_roation(curr_node)
 
