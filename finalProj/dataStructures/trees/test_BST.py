@@ -1,5 +1,10 @@
-from BST import BST
+# import sys
+# sys.path.insert(0, "..")
+# from dataStructures.nodes.TNode import TNode
+# from dataStructures.trees.BST import BST
+
 from TNode import TNode
+from BST import BST
 
 def test_BST_Constructors():
     # Default constructor

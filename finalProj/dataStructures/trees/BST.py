@@ -1,4 +1,6 @@
-from TNode import TNode
+import sys
+sys.path.insert(0, "..")
+from nodes.TNode import TNode
 
 class BST:
 
