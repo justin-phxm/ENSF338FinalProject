@@ -1,8 +1,9 @@
 class TNode:
 
-    def __init__(self, data=None, balance=0, P=None, L=None, R=None):
+    def __init__(self, data=None, balance=0,height=1, P=None, L=None, R=None):
         self.data = data
         self.balance = balance
+        self.height = height
         self.parent_node = P
         self.left_node = L
         self.right_node = R
@@ -18,6 +19,12 @@ class TNode:
 
     def get_balance(self):
         return self.balance
+    
+    def set_height(self, height):
+        self.height = height
+
+    def get_height(self):
+        return self.height
 
     def set_parent_node(self, parent):
         self.parent_node = parent

@@ -20,41 +20,93 @@ class AVL(BST):
 
     def get_root(self):
         return self.root()
-    
+
     # Not complete, have to balance tree
     # Override
     def insert(self, data):
-        movements = []
         if (type(data) == int):
             new_node = TNode(data)
         else:
             new_node = data
-
-        if self.root == None:
-            self.root = new_node
-            new_node.set_balance(0)
-            return
-
         
-        current = self.root
-
-        while current != None:
-            parent = current
-
-            if new_node.get_data() <= current.get_data():
-                current = current.get_left_node()
-                movements.append('left')
-            else:
-                current = current.get_right_node()
-                movements.append('right')
-
-        if new_node.get_data() <= parent.get_data():
-            parent.set_left_node(new_node)
-            new_node.set_parent_node(parent)
+        self.root = self._insert_then_balance(self.root, new_node)
+        
+        
+    # This is a helper function that is meant
+    # to balance the BST into an AVL Tree
+    def _insert_then_balance(self, curr_node, inserting_node):
+        # Inserting the new node into the right spot
+        if curr_node == None:
+            return inserting_node
+        elif inserting_node.get_value() <= curr_node.get_value():
+            curr_node.set_left_node(self._insert_then_balance(curr_node.get_left_node(), inserting_node))
         else:
-            parent.set_right_node(new_node)
-            new_node.set_parent_node(parent)
-        self._balance_tree(new_node, movements)
+            curr_node.set_right_node(self._insert_then_balance(curr_node.get_right_node(), inserting_node))
+        
+        # Changing the height of the current node (it starts at the bottom of the tree)
+        curr_node.set_height(1 + max(self._find_height(curr_node.get_left_node()), self._find_height(curr_node.get_right_node())))
+
+        # After updating the height, it becomes easier to find the balance of the node
+        curr_node.set_balance(self._find_balance(curr_node))
+
+        # Here we look at different cases and change the shape of the tree
+        # depending on the balance and the value of the inserting node
+
+        # Left Left Case ()
+        if curr_node.get_balance() > 1 and inserting_node.get_value() < curr_node.get_left_node().get_value():
+            return self._right_rotation(curr_node)
+        
+        # Left Right Case ()
+        if curr_node.get_balance() > 1 and inserting_node.get_value() > curr_node.get_left_node().get_value():
+            curr_node.set_left_node(self._left_rotation(curr_node.get_left_node()))
+            return self._right_rotation(curr_node)
+        
+        # Right Right Case ()
+        if curr_node.get_balance() < -1 and inserting_node.get_value() > curr_node.get_left_node().get_value():
+            return self._left_rotation(curr_node)
+
+        # Right Left Case ()
+        if curr_node.get_balance() < -1 and inserting_node.get_value() < curr_node.get_right_node().get_value():
+            curr_node.set_right_node(self._right_rotation(curr_node.get_right_node()))
+            return self._left_roation(curr_node)
+
+        return curr_node                               
+
+    # This is a helper function that is meant
+    # to find the height of a node
+    def _find_height(self, node):
+        if node == None:
+            return 0
+        else:
+            return node.get_height()
+
+    # This is a helper function that is meant
+    # to find the balance of a node
+    def _find_balance(self, node):
+        if node == None:
+            return 0
+        else:
+            return self._find_height(node.get_left_node()) - self._find_height(node.get_right_node())
+         
+    def _right_rotation(self, node):
+        new_root = node.get_left_node()
+        node.set_left_node(new_root.get_right_node)
+        new_root.set_right_node(node)
+
+        node.set_height(1 + max(self._find_height(node.get_left()), self._find_height(node.get_right())))
+        new_root.set_height(1 + max(self._find_height(new_root.get_left_node(), self._find_height(new_root.get_right_node()))))
+
+        return new_root
+    
+    def _left_rotation(self, node):
+        new_root = node.get_right_node()
+        node.set_right_node(new_root.get_left_node())
+        new_root.set_left_node(node)
+
+        node.set_height(1 + max(self._find_height(node.get_left()), self._find_height(node.get_right())))
+        new_root.height = 1 + max(self._height(new_root.left), self._height(new_root.right))
+
+        return new_root
 
     #TODO Bonus
     # Not complete, have to balance tree
@@ -70,56 +122,4 @@ class AVL(BST):
     def printBF(self):
         super().printBF()
 
-    # This is a helper function that is meant
-    # to balance the BST into an AVL Tree
-    def _balance_tree(self, inserted_node, movements):
-        current = self.root
-        ancestor = None # Parent node of the pivot node
-        pivot = None    # Most recently encountered node with a balance of not 0
-        son = None      # Child node of the pivot node
-
-        # Going from root to inserted node to assign ancestor, pivot, and son nodes
-        for direction in movements:
-            assigned_pivot = False
-            if current.get_balance() != 0:
-                if current == self.root:
-                    pivot = current
-                else:
-                    pivot = current
-                    ancestor = pivot.get_parent_node()
-                assigned_pivot = True
-
-            if direction == "left":
-                current = current.get_left_node()
-            else:
-                current = current.get_left_node()
-            if assigned_pivot:
-                son = current
-
-        # If case 1: 'No pivot, no balance updates' occurs, we can just return
-        if pivot == None:
-            return
-        balancing_node = inserted_node
-        while balancing_node != pivot:
-            self._find_balance(balancing_node)
-            balancing_node = balancing_node.get_parent_node()
-
-    # This is a helper function that is meant
-    # to find the balance of a node
-    def _find_balance(self, node):
-        left_height = 0
-        right_height = 0
-        
-        if node.get_left_node() == None and node.get_right_node() == None:
-            node.set_balance(0)
-            return
-        
-        if node.get_left_node() != None:
-            left_height += 1
-            self._find_balance(node.get_left_node())
-        
-        if node.get_right_node() != None:
-            right_height += 1
-            self._find_balance(node.get_right_node())
-
-        node.set_balance(right_height - left_height)
+    
