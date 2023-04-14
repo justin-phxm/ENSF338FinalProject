@@ -86,14 +86,14 @@ class AVL(BST):
         if node == None:
             return 0
         else:
-            return self._find_height(node.get_left_node()) - self._find_height(node.get_right_node())
+            return self._find_height(node.get_right_node()) - self._find_height(node.get_left_node())
          
     def _right_rotation(self, node):
         new_root = node.get_left_node()
-        node.set_left_node(new_root.get_right_node)
+        node.set_left_node(new_root.get_right_node())
         new_root.set_right_node(node)
 
-        node.set_height(1 + max(self._find_height(node.get_left()), self._find_height(node.get_right())))
+        node.set_height(1 + max(self._find_height(node.get_left_node()), self._find_height(node.get_right_node())))
         new_root.set_height(1 + max(self._find_height(new_root.get_left_node(), self._find_height(new_root.get_right_node()))))
 
         return new_root
@@ -103,8 +103,8 @@ class AVL(BST):
         node.set_right_node(new_root.get_left_node())
         new_root.set_left_node(node)
 
-        node.set_height(1 + max(self._find_height(node.get_left()), self._find_height(node.get_right())))
-        new_root.height = 1 + max(self._height(new_root.left), self._height(new_root.right))
+        node.set_height(1 + max(self._find_height(node.get_left_node()), self._find_height(node.get_right_node())))
+        new_root.set_height(1 + max(self._height(new_root.get_left_node()), self._height(new_root.get_right_node())))
 
         return new_root
 

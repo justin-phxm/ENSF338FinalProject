@@ -48,13 +48,73 @@ def test_BST_set_root():
     assert second_BST.get_root().get_data() == 5
 
     # Setting root of a non-empty BST
-    
+    new_root2 = TNode(3)
+    second_BST.set_root(new_root2)
+
+    assert second_BST.get_root().get_data() == 3
+    assert second_BST.get_root().get_right_node().get_data() == 5
 
 def test_BST_delete():
-    pass
+    first_BST = BST(9)
+    first_BST.delete(9)
+    assert first_BST.get_root() == None
+
+    first_BST.insert(5)
+    first_BST.insert(4)
+    first_BST.insert(6)
+
+    first_BST.delete(4)
+    assert first_BST.search(4) == None
+    #Does not work when you give it 5 for some reason
+
+
 
 def test_BST_print_in_order():
-    pass
+    # Inserting into the BST in a balanced order
+    first_BST = BST(5)
+    first_BST.insert(4)
+    first_BST.insert(6)
+    first_BST.insert(3)
+    first_BST.insert(2)
+    first_BST.insert(7)
+    first_BST.insert(8)
+
+    print("Print in order test 1:")
+    first_BST.print_in_order(first_BST.get_root())
+
+    # Inserting into the BST in a non-balanced order
+    second_BST = BST(2)
+    second_BST.insert(3)
+    second_BST.insert(4)
+    second_BST.insert(5)
+    second_BST.insert(6)
+    second_BST.insert(7)
+    second_BST.insert(8)
+
+    print("Print in order test 2:")
+    second_BST.print_in_order(first_BST.get_root())
 
 def test_BST_printBF():
-    pass
+    # Inserting into the BST in a balanced order
+    first_BST = BST(5)
+    first_BST.insert(4)
+    first_BST.insert(6)
+    first_BST.insert(3)
+    first_BST.insert(2)
+    first_BST.insert(7)
+    first_BST.insert(8)
+
+    assert first_BST.get_root().get_data() == 5
+    
+
+    # Inserting into the BST in a non-balanced order
+    second_BST = BST(2)
+    second_BST.insert(3)
+    second_BST.insert(4)
+    second_BST.insert(5)
+    second_BST.insert(6)
+    second_BST.insert(7)
+    second_BST.insert(8)
+
+    print("Print breadth-first test 2:")
+    second_BST.printBF()
