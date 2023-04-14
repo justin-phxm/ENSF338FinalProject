@@ -67,34 +67,7 @@ def test_BST_delete():
     assert first_BST.search(4) == None
     #Does not work when you give it 5 for some reason
 
-
-
-def test_BST_print_in_order():
-    # Inserting into the BST in a balanced order
-    first_BST = BST(5)
-    first_BST.insert(4)
-    first_BST.insert(6)
-    first_BST.insert(3)
-    first_BST.insert(2)
-    first_BST.insert(7)
-    first_BST.insert(8)
-
-    print("Print in order test 1:")
-    first_BST.print_in_order(first_BST.get_root())
-
-    # Inserting into the BST in a non-balanced order
-    second_BST = BST(2)
-    second_BST.insert(3)
-    second_BST.insert(4)
-    second_BST.insert(5)
-    second_BST.insert(6)
-    second_BST.insert(7)
-    second_BST.insert(8)
-
-    print("Print in order test 2:")
-    second_BST.print_in_order(first_BST.get_root())
-
-def test_BST_printBF():
+def test_BST_shape():
     # Inserting into the BST in a balanced order
     first_BST = BST(5)
     first_BST.insert(4)
@@ -105,16 +78,68 @@ def test_BST_printBF():
     first_BST.insert(8)
 
     assert first_BST.get_root().get_data() == 5
-    
+    assert first_BST.get_root().get_left_node().get_data() == 4
+    assert first_BST.get_root().get_right_node().get_data() == 6
+    assert first_BST.get_root().get_left_node().get_left_node().get_data() == 3
+    assert first_BST.get_root().get_right_node().get_right_node().get_data() == 7
+    assert first_BST.get_root().get_left_node().get_left_node().get_left_node().get_data() == 2
+    assert first_BST.get_root().get_right_node().get_right_node().get_right_node().get_data() == 8
 
     # Inserting into the BST in a non-balanced order
     second_BST = BST(2)
     second_BST.insert(3)
     second_BST.insert(4)
     second_BST.insert(5)
-    second_BST.insert(6)
-    second_BST.insert(7)
-    second_BST.insert(8)
+
+    assert second_BST.get_root().get_data() == 2
+    assert second_BST.get_root().get_right_node().get_data() == 3
+    assert second_BST.get_root().get_right_node().get_right_node().get_data() == 4
+    assert second_BST.get_root().get_right_node().get_right_node().get_right_node().get_data() == 5
+
+def test_BST_print_in_order():
+    # Inserting into the BST in a balanced order
+    first_BST = BST(5)
+    first_BST.insert(4)
+    first_BST.insert(6)
+    first_BST.insert(3)
+    first_BST.insert(2)
+    first_BST.insert(7)
+    first_BST.insert(8)
+    
+    print("Print inorder test 1:")
+    first_BST.printBF()
+    print()
+
+    # Inserting into the BST in a non-balanced order
+    second_BST = BST(2)
+    second_BST.insert(3)
+    second_BST.insert(4)
+    second_BST.insert(5)
+
+    print("Print inorder test 2:")
+    second_BST.printBF()
+    print()
+
+def test_BST_printBF():
+    # Inserting into the BST in a balanced order
+    first_BST = BST(5)
+    first_BST.insert(4)
+    first_BST.insert(6)
+    first_BST.insert(3)
+    first_BST.insert(2)
+    first_BST.insert(7)
+    first_BST.insert(8)
+    
+    print("Print breadth-first test 1:")
+    first_BST.printBF()
+    print()
+
+    # Inserting into the BST in a non-balanced order
+    second_BST = BST(2)
+    second_BST.insert(3)
+    second_BST.insert(4)
+    second_BST.insert(5)
 
     print("Print breadth-first test 2:")
     second_BST.printBF()
+    print()
