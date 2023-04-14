@@ -1,6 +1,4 @@
-import sys
-sys.path.insert(0, "..")
-from nodes.TNode import TNode
+from TNode import TNode
 
 class BST:
 
@@ -180,11 +178,11 @@ class BST:
         return None
 
     # prints the content data of the tree in ascending order
-    def print_in_order(self, current = True):
+    def print_in_order(self, current):
         if current != None:
-            self.print_in_order(self.root.get_left_node())
+            self.print_in_order(current =current.get_left_node())
             print(current.get_data())
-            self.print_in_order(self.root.get_right_node())
+            self.print_in_order(current =current.get_right_node())
 
 
     # prints the content of the tree in Breadth-First order, 
@@ -192,10 +190,14 @@ class BST:
     def printBF(self):
         queue = []
         queue.append(self.root)
-        while len(queue) > 0:
-            current = queue.pop(0) # Remove from front of queue
-            print(current.get_data())
-            if current.left is not None:
-                queue.append(current.get_left_node())
-            if current.right is not None:
-                queue.append(current.get_right_node())
+        while queue:
+            num_of_nodes = len(queue)
+            while num_of_nodes > 0:
+                current = queue.pop(0) # Remove from front of queue
+                print(current.get_data(), end=" ")
+                if current.get_left_node() != None:
+                    queue.append(current.get_left_node())
+                if current.get_right_node() != None:
+                    queue.append(current.get_right_node())
+                num_of_nodes -= 1
+            print()
