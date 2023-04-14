@@ -1,7 +1,9 @@
-import sys
-sys.path.insert(0, "..")
-from nodes.TNode import TNode
-from trees.BST import BST
+# import sys
+# sys.path.insert(0, "..")
+# from nodes.TNode import TNode
+# from trees.BST import BST
+from TNode import TNode
+from BST import BST
 
 class AVL(BST):
     
