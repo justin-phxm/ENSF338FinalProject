@@ -16,12 +16,14 @@ class AVL(BST):
         else:
             self.root = data
 
+    # Not complete, have to balance tree
     def set_root(self, data):
         super().set_root(data)
 
     def get_root(self):
         return self.root
 
+    # Not complete, have to balance tree
     # Override
     def insert(self, data):
         if (type(data) == int):
@@ -54,33 +56,21 @@ class AVL(BST):
 
         # Left Left Case ()
         if curr_node.get_balance() > 1 and inserting_node.get_data() > curr_node.get_left_node().get_data():
-            var = self._left_rotation(curr_node)
-            curr_node.set_height(1 + max(self._find_height(curr_node.get_left_node()), self._find_height(curr_node.get_right_node())))
-            curr_node.set_balance(self._find_balance(curr_node))
-            return
+            return self._left_rotation(curr_node)
         
         # Left Right Case ()
         if curr_node.get_balance() < -1 and inserting_node.get_data() > curr_node.get_left_node().get_data():
             curr_node.set_left_node(self._left_rotation(curr_node.get_left_node()))
-            var = self._right_rotation(curr_node)
-            curr_node.set_height(1 + max(self._find_height(curr_node.get_left_node()), self._find_height(curr_node.get_right_node())))
-            curr_node.set_balance(self._find_balance(curr_node))
-            return var
+            return self._right_rotation(curr_node)
         
         # Right Right Case ()
         if curr_node.get_balance() < -1 and inserting_node.get_data() <= curr_node.get_right_node().get_data():
-            var = self._right_rotation(curr_node)
-            curr_node.set_height(1 + max(self._find_height(curr_node.get_left_node()), self._find_height(curr_node.get_right_node())))
-            curr_node.set_balance(self._find_balance(curr_node))
-            return var
+            return self._right_rotation(curr_node)
 
         # Right Left Case ()
         if curr_node.get_balance() > 1 and inserting_node.get_data() <= curr_node.get_right_node().get_data():
             curr_node.set_right_node(self._right_rotation(curr_node.get_right_node()))
-            var = self._left_rotation(curr_node)
-            curr_node.set_height(1 + max(self._find_height(curr_node.get_left_node()), self._find_height(curr_node.get_right_node())))
-            curr_node.set_balance(self._find_balance(curr_node))
-            return var
+            return self._left_rotation(curr_node)
 
         return curr_node                               
 
